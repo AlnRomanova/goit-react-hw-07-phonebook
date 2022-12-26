@@ -25,7 +25,7 @@ export const App = () => {
       <ContactForm />
       <h2>Contacts</h2>
       <Filter/>
-      {isLoading && !error && <b>Loading contacts...</b>}
+      {isLoading && !error && <b>Loading...</b>}
       {error && <b>{error}</b>}
       <ContactList/>
       <ToastContainer autoClose={2000} />
