@@ -1,9 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/contactsOperations';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selector';
+import { selectContacts } from 'redux/contactsSelectors';
 import css from './ContactForm.module.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,7 +13,7 @@ const ContactForm = () => {
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const handleNameChange = e => {
     const { name, value } = e.target;
@@ -38,7 +38,7 @@ const ContactForm = () => {
       toast.info(`${name} is already in contacts 👇`);
       return;
     }
-    dispatch(addContact(name, number));
+    dispatch(addContact({name, number}));
     setName('');
     setNumber('');
   };
